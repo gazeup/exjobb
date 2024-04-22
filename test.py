@@ -79,5 +79,5 @@ print(predictions)
 
 from sklearn.metrics import mean_absolute_error
 
-predicted_tool_wear = ai4i_model.predict(X)
-print(mean_absolute_error(y, predicted_tool_wear))
+#predicted_tool_wear = ai4i_model.predict(X)
+#print(mean_absolute_error(y, predicted_tool_wear))
