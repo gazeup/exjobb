@@ -1,11 +1,17 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# save filepath to variable for easier access
-ai41_file_path = '../datasets/ai4i/ai4i2020.csv'
+# Save filepath to variable for easier access
+ai41_file_path = 'datasets/ai4i/ai4i2020.csv'
 
-# read the data and store data in DataFrame titled ai4i_data
+# Read the data and store data in DataFrame named ai4i_data
 ai4i_data = pd.read_csv(ai41_file_path)
+
+# Print a summary of the data
+#print(ai4i_data.describe())
+
+# Print the names of the columns
+#print(ai4i_data.columns)
 
 # Value counts for the failure types.
 failure_counts = pd.DataFrame({
@@ -16,15 +22,11 @@ failure_counts = pd.DataFrame({
     'RNF': ai4i_data['RNF'].value_counts()
 })
 
-# Since we're interested in plotting the counts for failures
-# extract the count of '1's for each failure type.
+# Extract and plot the count of '1's for each failure type.
 failure_counts = failure_counts.loc[1]
 
-
-
-# Value count for machine failure (the total number of machine failures)
+# Count the total number of machine failures
 machine_failure_counts = ai4i_data['Machine failure'].value_counts()
-
 
 
 # Visualization
@@ -40,16 +42,16 @@ plt.show()
 
 # Bar chart to show failure types
 plt.figure(figsize=(10, 6))
-# Create a bar plot and specify custom colors
+# Create the bar plot
 bars = plt.bar(failure_counts.index, failure_counts.values, color=custom_colors)
 
 # Adding the counts above the bars
 for bar in bars:
     yval = bar.get_height()
-    plt.text(bar.get_x() + bar.get_width()/2, yval, int(yval), va='bottom', ha='center')  # va and ha specify the alignment of the text
+    plt.text(bar.get_x() + bar.get_width()/2, yval, int(yval), va='bottom', ha='center')
 
 plt.title('Number of Failures by Type')
 plt.xlabel('Type of Failure')
 plt.ylabel('Counts')
-plt.xticks(rotation=0)  # Keep the labels on the x-axis vertical for readability
+plt.xticks(rotation=0)
 plt.show()
